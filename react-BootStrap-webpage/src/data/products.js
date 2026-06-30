@@ -1,9 +1,9 @@
 import book1 from "../assets/images/book1.jpg";
-import book2 from "../assets/images/book2.jpg";
-import book3 from "../assets/images/book3.jpg";
-import book4 from "../assets/images/book4.jpg";
-import book5 from "../assets/images/book5.jpg";
-import book6 from "../assets/images/book6.jpg";
+import book2 from "../assets/images/Book2.jpg";
+import book3 from "../assets/images/Book3.jpg";
+import book4 from "../assets/images/Book4.jpg";
+import book5 from "../assets/images/Book5.jpg";
+import book6 from "../assets/images/Book6.jpg";
 
 
 
