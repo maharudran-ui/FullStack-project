@@ -3,7 +3,7 @@ import MainLayout from "../components/Layout/MainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import TrackOrder from "../pages/TrackOrder";
-import Cart from "../pages/Cart";
+import Cart from "../pages/cart";
 import ContactUs from "../pages/ContactUs";
 import AdminLogin from "../admin/pages/AdminLogin";
 import AddProduct from "../admin/pages/AddProduct";
