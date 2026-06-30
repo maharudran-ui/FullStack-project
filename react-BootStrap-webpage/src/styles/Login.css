@@ -1,0 +1,13 @@
+.login-page {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f5f5f5;
+}
+
+.login-card {
+  width: 400px;
+}

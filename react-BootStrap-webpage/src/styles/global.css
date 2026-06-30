@@ -1,0 +1,30 @@
+body {
+  background-color: #efefc8 !important;
+  font-family: Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav-link {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+button {
+  border-radius: 0 !important;
+}
+
+.collectables-title {
+  font-size: 32px;
+  font-family: Georgia, serif;
+  font-weight: 300;
+  color: #454545;
+  margin-bottom: 70px;
+  
+}

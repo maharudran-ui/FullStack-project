@@ -1,0 +1,21 @@
+
+.custom-select {
+  background-color: #ffffff !important;
+  color: #803300 !important;
+  border: 1px solid #803300 !important;
+  border-radius: 20px;
+}
+
+
+.custom-select:focus {
+  background-color: #ffffff !important;
+  color: #803300 !important;
+  box-shadow: none !important;
+}
+
+
+.custom-select option {
+  background-color: #ffffff !important;
+  color: #803300 !important;
+}
+

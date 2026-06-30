@@ -1,0 +1,125 @@
+
+.stock-main-title {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #3b3a30;
+}
+
+
+.filter-btn {
+  background-color: transparent;
+  border: 1px solid #803300;
+  color: #803300;
+  border-radius: 0px !important;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 5px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+ 
+.filter-btn.active {
+  background-color: #803300;
+  color: #ffffff;
+}
+
+
+
+
+.mobile-filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fffdf2;
+  border: 1px solid #803300;
+  padding: 10px 14px;
+}
+
+.mobile-filter-icon {
+  color: #803300;
+  font-size: 1rem;
+}
+
+.mobile-filter-text {
+  font-weight: 600;
+  color: #803300;
+}
+
+.mobile-filter-dropdown {
+  border: none;
+  background: transparent;
+  flex: 1;
+  outline: none;
+  color: #803300;
+  font-weight: 600;
+}
+
+
+.stamp-card {
+  background-color: #fffdf2; 
+  width: 100%;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.stamp-img-frame {
+  background-color: transparent; 
+  height: 160px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.stamp-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+.stamp-txt-year,
+.stamp-txt-price {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #000000;
+}
+
+.stamp-title {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #222222;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.stamp-description {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 12.5px;
+  color: #555555;
+  margin: 0;
+}
+
+.stamp-add-btn {
+  background-color: #803300 !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem !important;
+  padding: 6px 14px !important;
+  border-radius: 0px !important; 
+}
+
+.stamp-add-btn:hover {
+  background-color: #612700 !important;
+}

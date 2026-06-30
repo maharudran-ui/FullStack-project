@@ -1,0 +1,76 @@
+
+.pagination-bar-card {
+  background-color: #fffdf2; 
+  padding: 10px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+
+.page-num-btn, 
+.page-nav-arrow {
+  background: #ffffff;
+  border: 1px solid #803300;
+  color: #803300;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+.page-num-btn.active {
+  background-color: #803300;
+  color: #ffffff;
+}
+
+
+.page-nav-arrow:disabled {
+  border-color: #d1c7bd;
+  color: #d1c7bd;
+  cursor: not-allowed;
+  background: #fafafa;
+}
+
+.pagination-ellipsis {
+  color: #803300;
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+
+.go-to-label {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #444444;
+  font-size: 0.95rem;
+}
+
+.go-to-input {
+  width: 45px;
+  height: 34px;
+  border: 1px solid #803300;
+  text-align: center;
+  font-weight: 600;
+  outline: none;
+}
+
+.go-to-submit-link {
+  background: none;
+  border: none;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0;
+}
+
+.go-to-submit-link:hover {
+  color: #803300;
+}

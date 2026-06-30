@@ -1,0 +1,64 @@
+.contact-page {
+  background-color: #efefc8;
+  min-height: 100vh;
+  padding-top: 70px;
+  padding-bottom: 80px;
+}
+
+.contact-main-title {
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2f3640;
+  margin-bottom: 35px;
+}
+
+.contact-text {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+.contact-address {
+  margin-bottom: 25px;
+}
+
+.contact-address p {
+  margin-bottom: 6px;
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  color: #374151;
+}
+
+.contact-description {
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #374151;
+  margin-bottom: 28px;
+}
+
+.terms-title {
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2f3640;
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.sub-heading {
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2f3640;
+  margin-bottom: 15px;
+}
+
+a {
+  color: #2f3640;
+  font-weight: 600;
+  text-decoration: underline;
+}

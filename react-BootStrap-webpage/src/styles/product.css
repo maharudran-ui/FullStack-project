@@ -1,0 +1,105 @@
+
+body {
+   background-color: #efefc8 !important;
+}
+
+
+.collectables-title {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #3b3a30;
+  margin-bottom: 30px;
+  text-align:left;
+}
+
+
+.product-card {
+  background-color: #fffef2 !important; 
+  border: none !important;
+  border-radius: 4px !important; 
+
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 24px 20px 20px 20px; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+}
+
+
+.product-image {
+  height: 120px; 
+  width: auto !important;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 20px;
+  cursor: pointer;
+}
+
+.product-card .card-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+
+.product-title {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px; 
+  line-height: 1.4;
+  color: #2c2c2c;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+
+.product-category {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  text-align: center;
+  color: #1a1a1a;
+  margin-top: auto; 
+  cursor: pointer;
+}
+
+
+.collectable-card {
+  background-color: #f8f7ed !important;
+  border-radius: 6px !important;
+  padding: 20px 16px;
+  height: 100%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.collectable-image-wrapper {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collectable-image {
+  max-height: 130px;
+  width: auto !important;
+  object-fit: contain;
+}
+
+.collectable-title {
+  font-size: 1rem !important;
+  line-height: 1.5;
+  margin-bottom: 10px !important;
+  color: #111827;
+}
+
+.collectable-category {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #111827 !important;
+}
