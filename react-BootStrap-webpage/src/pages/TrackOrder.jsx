@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Form } from "react-bootstrap";
-import WestindiesBookGrid from "../components/product/WestindiesBooksGrid"; 
+import WestindiesBookGrid from "../components/product/WestIndiesBooksGrid"; 
 import CategoriesBar from "../components/common/CategoriesBar";
 import SearchBar from "../components/common/SearchBar";
 import StockPagination from "../components/product/StockPagination";

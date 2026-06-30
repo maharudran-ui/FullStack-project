@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FaFacebookF } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import "../../styles/Footer.css";
-import FooterImg from "../../assets/images/FooterImg2.png";
+import FooterImg from "../../assets/images/Footerimg2.png";
 import PaymentImg from "../../assets/images/Footerimg.png";
 
 export default function Footer() {

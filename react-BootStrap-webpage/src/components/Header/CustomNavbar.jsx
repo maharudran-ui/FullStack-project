@@ -3,7 +3,7 @@ import { Navbar,Container,Nav,Button,Offcanvas} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {FaShoppingCart,FaTh,FaHome,FaInfoCircle,FaBoxOpen,FaPhoneAlt,FaFacebookF,FaChevronRight} from "react-icons/fa";
 import { useSelector } from "react-redux";
-import "../../styles/navbar.css";
+import "../../styles/Navbar.css";
 
 function CustomNavbar() {
 

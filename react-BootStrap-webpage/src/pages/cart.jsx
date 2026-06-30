@@ -3,11 +3,11 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CategoriesBar from "../components/common/CategoriesBar";
-import CartItem from "../components/Cart/CartItem";
+import CartItem from "../components/cart/CartItem";
 import ProductGrid from "../components/product/ProductGrid";
 import products from "../data/products";
 import api from "../services/api";
-import "../styles/Cart.css";
+import "../styles/cart.css";
 
 function Cart() {
   const navigate = useNavigate();
