@@ -56,9 +56,8 @@ function AddProduct() {
     } catch (err) {
       console.log(err);
     }
-   const res = await adminApi.get(
-  `/values/category/${categoryId}/group/${groupId}`
-);
+   
+
 
 console.log("CATEGORY ID:", categoryId);
 console.log("GROUP ID:", groupId);

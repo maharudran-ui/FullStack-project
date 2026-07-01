@@ -22,7 +22,7 @@ const handleAddToCart = () => {
     addToCart({
       id: book.product_id,
       title: book.tittle,
-      image: `${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`,
+      image: `${import.meta.env.VITE_API_URL}/uploads/${book.product_image}`,
       description: book.description,
       price: book.price
     })
@@ -33,7 +33,7 @@ const handleAddToCart = () => {
     <Card className="border-0 text-center product-card h-100">
       <div className="stamp-img-frame">
         <img
-  src={`${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`}
+  src={`${import.meta.env.VITE_API_URL}/uploads/${book.product_image}`}
   alt={book.tittle}
   className="stamp-img"
 />
