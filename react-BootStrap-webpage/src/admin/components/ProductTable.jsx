@@ -56,7 +56,7 @@ function ProductTable({ products }) {
 
             <td>
              <img
-  src={`http://localhost:5000/uploads/${product.product_image}`}
+  src={`${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`}
   alt={product.tittle}
   width="60"
   height="60"

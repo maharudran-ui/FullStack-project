@@ -30,12 +30,14 @@ const categoryMap = {
     >
       <div className="collectable-image-wrapper">
         <Card.Img
-          variant="top"
-        src={product.product_image
-  ? `http://localhost:5000/uploads/${product.product_image}`
-  : product.image}
-          className="collectable-image"
-        />
+  variant="top"
+  src={
+    product.product_image
+      ? `${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`
+      : product.image
+  }
+  className="collectable-image"
+/>
       </div>
 
       <Card.Body className="text-center">

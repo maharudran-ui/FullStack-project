@@ -19,7 +19,7 @@ const handleAddToCart = () => {
     addToCart({
       id: product.product_id,
       title: product.tittle,
-      image: `http://localhost:5000/uploads/${product.product_image}`,
+      image: `${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`,
       description: product.description,
       price: product.price
     })
@@ -32,7 +32,7 @@ console.log("showMessage:", showMessage);
       <div className="philatelic-card h-100">
         <div className="text-center mb-4">
         <img
-  src={`http://localhost:5000/uploads/${product.product_image}`}
+  src={`${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`}
   alt={product.tittle}
   className="philatelic-image"
 />

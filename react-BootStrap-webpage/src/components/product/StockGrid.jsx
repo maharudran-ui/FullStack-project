@@ -27,7 +27,7 @@ function StockGrid({
     addToCart({
       id: product.product_id,
       title: product.tittle,
-      image: `http://localhost:5000/uploads/${product.product_image}`,
+      image: `${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`,
       description: product.description,
       price: product.price,
     })
@@ -166,7 +166,7 @@ function StockGrid({
             <div className="stamp-card h-100">
               <div className="stamp-img-frame">
                 <img
-                  src={`http://localhost:5000/uploads/${stamp.product_image}`}
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`}
                   alt={stamp.tittle}
                   className="stamp-img"
                 />
