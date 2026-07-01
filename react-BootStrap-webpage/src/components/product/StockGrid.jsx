@@ -166,7 +166,7 @@ function StockGrid({
             <div className="stamp-card h-100">
               <div className="stamp-img-frame">
                 <img
-                  src={`${import.meta.env.VITE_API_URL}/uploads/${product.product_image}`}
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${stamp.product_image}`}
                   alt={stamp.tittle}
                   className="stamp-img"
                 />
