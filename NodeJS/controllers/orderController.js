@@ -61,11 +61,62 @@ exports.createOrder = (req, res) => {
 
 // GET ALL ORDERS
 exports.getOrders = (req, res) => {
-  const sql = "SELECT * FROM orders ORDER BY id ASC";
+  const sql = "SELECT * FROM orders ORDER BY id DESC";
 
   db.query(sql, (err, result) => {
     if (err) return res.status(500).json(err);
 
-    res.status(200).json(result);
+    const orders = result.map(order => ({
+      ...order,
+      items: JSON.parse(order.items)
+    }));
+
+    res.json(orders);
   });
+};
+
+
+//GET ORDER BY ID
+
+exports.getOrderById = (req, res) => {
+
+    const sql = "SELECT * FROM orders WHERE id=?";
+
+    db.query(sql,[req.params.id],(err,result)=>{
+
+        if(err)
+            return res.status(500).json(err);
+
+        if(result.length===0)
+            return res.status(404).json({
+                message:"Order not found"
+            });
+
+        result[0].items = JSON.parse(result[0].items);
+
+        res.json(result[0]);
+
+    });
+
+};
+
+//UPDATE ORDER STATUS
+
+exports.updateOrderStatus = (req,res)=>{
+   const { id } = req.params;
+    const {status}=req.body;
+
+    const sql="UPDATE orders SET status=? WHERE id=?";
+
+    db.query(sql,[status,req.params.id],(err)=>{
+
+        if(err)
+            return res.status(500).json(err);
+
+        res.json({
+            message:"Status updated"
+        });
+
+    });
+
 };

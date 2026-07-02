@@ -17,6 +17,7 @@ import Values from "../admin/pages/Values";
 import Products from "../admin/pages/Products";
 import Orders from "../admin/pages/Orders";
 import Order from "../pages/Order";
+import OrderDetails from "../admin/pages/OrderDetails";
 
 
 
@@ -46,6 +47,10 @@ function AppRoutes() {
 <Route path="/admin/values" element={<Values />} />
 <Route path="/order" element={<Order />} />
 <Route path="/admin/orders" element={<Orders />} />
+<Route
+  path="/admin/orders/:id"
+  element={<OrderDetails />}
+/>
 
 
   </Routes>
