@@ -49,8 +49,8 @@ function AddProduct() {
   const loadValues = async (categoryId, groupId) => {
     try {
       const res = await adminApi.get(
-        `/values/category/${categoryId}/group/${groupId}`
-      );
+  `/values/admin/category/${categoryId}/group/${groupId}`
+);
 
       setValues(res.data);
     } catch (err) {
@@ -250,7 +250,7 @@ setValues(res.data);
             </Row>
 
             {/* VALUES */}
-            <Form.Group className="mb-3">
+            {/* <Form.Group className="mb-3">
               <Form.Label>Values</Form.Label>
 
               {values.length === 0 ? (
@@ -283,7 +283,36 @@ setValues(res.data);
                   />
                 ))
               )}
-            </Form.Group>
+            </Form.Group> */}
+
+            <Form.Group className="mb-3">
+  <Form.Label>Values</Form.Label>
+
+  <Form.Select
+    multiple
+    value={product.value_id}
+    onChange={(e) => {
+      const selected = Array.from(
+        e.target.selectedOptions,
+        (option) => Number(option.value)
+      );
+
+      setProduct((prev) => ({
+        ...prev,
+        value_id: selected,
+      }));
+    }}
+  >
+    {values.map((val) => (
+      <option
+        key={val.value_id}
+        value={val.value_id}
+      >
+        {val.value_name}
+      </option>
+    ))}
+  </Form.Select>
+</Form.Group>
 
             {/* IMAGE */}
             <Form.Group className="mb-4">
