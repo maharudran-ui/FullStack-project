@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { createValue,getValuesByGroup
+const { createValue,getValuesByGroup, getAllValuesByGroup
 } = require("../controllers/valueController");
 
 const { verifyToken, authorizeRoles } = require("../middlewares/authMiddleware");
@@ -13,5 +13,11 @@ router.post( "/add",
   createValue
 );
 router.get("/category/:categoryId/group/:groupId/", getValuesByGroup);
+
+
+router.get(
+  "/admin/category/:categoryId/group/:groupId",
+  getAllValuesByGroup
+);
 
 module.exports = router;
