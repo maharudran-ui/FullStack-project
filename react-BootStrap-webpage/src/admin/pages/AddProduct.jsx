@@ -284,7 +284,7 @@ setValues(res.data);
                 ))
               )}
             </Form.Group> */}
-
+{/* 
             <Form.Group className="mb-3">
   <Form.Label>Values</Form.Label>
 
@@ -303,6 +303,31 @@ setValues(res.data);
       }));
     }}
   >
+    {values.map((val) => (
+      <option
+        key={val.value_id}
+        value={val.value_id}
+      >
+        {val.value_name}
+      </option>
+    ))}
+  </Form.Select>
+</Form.Group> */}
+
+<Form.Group className="mb-3">
+  <Form.Label>Value</Form.Label>
+
+  <Form.Select
+    value={product.value_id}
+    onChange={(e) =>
+      setProduct((prev) => ({
+        ...prev,
+        value_id: [Number(e.target.value)],
+      }))
+    }
+  >
+    <option value="">Select Value</option>
+
     {values.map((val) => (
       <option
         key={val.value_id}
