@@ -1,4 +1,5 @@
 const db = require("../config/db");
+const { sendOrderStatusEmail } = require("../services/emailService");
 
 
 
@@ -145,21 +146,81 @@ exports.getOrderById = (req, res) => {
 
 //UPDATE ORDER STATUS
 
-exports.updateOrderStatus = (req,res)=>{
-   const { id } = req.params;
-    const {status}=req.body;
+// exports.updateOrderStatus = (req,res)=>{
+//    const { id } = req.params;
+//     const {status}=req.body;
 
-    const sql="UPDATE orders SET status=? WHERE id=?";
+//     const sql="UPDATE orders SET status=? WHERE id=?";
 
-    db.query(sql,[status,req.params.id],(err)=>{
+//     db.query(sql,[status,req.params.id],(err)=>{
 
-        if(err)
-            return res.status(500).json(err);
+//         if(err)
+//             return res.status(500).json(err);
+
+//         res.json({
+//             message:"Status updated"
+//         });
+
+//     });
+
+// };
+
+
+exports.updateOrderStatus = (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  // Update the order status
+  const updateSql = "UPDATE orders SET status = ? WHERE id = ?";
+
+  db.query(updateSql, [status, id], (err) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+
+    // Fetch the updated order details
+    const getOrderSql = "SELECT * FROM orders WHERE id = ?";
+
+    db.query(getOrderSql, [id], async (err, result) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+
+      if (result.length === 0) {
+        return res.status(404).json({
+          message: "Order not found",
+        });
+      }
+
+      const order = result[0];
+
+      try {
+        // Send email only for these statuses
+        if (
+          status === "Accepted" ||
+          status === "Shipped" ||
+          status === "Delivered" ||
+          status === "Cancelled"
+        ) {
+          await sendOrderStatusEmail(
+            order.email,
+            order.name,
+            order.id,
+            status
+          );
+        }
 
         res.json({
-            message:"Status updated"
+          message: "Status updated successfully",
         });
 
-    });
+      } catch (emailError) {
+        console.log(emailError);
 
+        res.json({
+          message: "Status updated but email could not be sent",
+        });
+      }
+    });
+  });
 };
