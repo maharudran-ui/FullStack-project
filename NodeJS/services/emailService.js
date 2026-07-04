@@ -8,6 +8,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+console.log("EMAIL_USER:", process.env.EMAIL_USER);
+console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Loaded" : "Missing");
+
 const sendOrderStatusEmail = async (
   email,
   customerName,

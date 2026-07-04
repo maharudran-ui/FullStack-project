@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const app = express();
 
+app.set("trust proxy", 1);
 
 const categoryRoutes = require("./routes/categoryRoutes");
 const groupRoutes = require("./routes/groupRoutes");
