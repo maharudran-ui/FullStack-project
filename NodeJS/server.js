@@ -6,7 +6,6 @@ app.set("trust proxy", 1);
 
 const categoryRoutes = require("./routes/categoryRoutes");
 const groupRoutes = require("./routes/groupRoutes");
-const app = express();
 const valueRoutes = require("./routes/valueRoutes");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
