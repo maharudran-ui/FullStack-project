@@ -170,44 +170,47 @@ exports.updateOrderStatus = (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
 
-  // Update the order status
+  console.log("Updating Order:", id);
+  console.log("New Status:", status);
+
   const updateSql = "UPDATE orders SET status = ? WHERE id = ?";
 
   db.query(updateSql, [status, id], (err) => {
     if (err) {
+      console.log("Update Error:", err);
       return res.status(500).json(err);
     }
 
-    // Fetch the updated order details
     const getOrderSql = "SELECT * FROM orders WHERE id = ?";
 
     db.query(getOrderSql, [id], async (err, result) => {
       if (err) {
+        console.log("Fetch Error:", err);
         return res.status(500).json(err);
-      }
-
-      if (result.length === 0) {
-        return res.status(404).json({
-          message: "Order not found",
-        });
       }
 
       const order = result[0];
 
+      console.log("Order Email:", order.email);
+      console.log("Order Name:", order.name);
+
       try {
-        // Send email only for these statuses
         if (
           status === "Accepted" ||
           status === "Shipped" ||
           status === "Delivered" ||
           status === "Cancelled"
         ) {
+          console.log("Calling sendOrderStatusEmail()...");
+
           await sendOrderStatusEmail(
             order.email,
             order.name,
             order.id,
             status
           );
+
+          console.log("Email Sent Successfully");
         }
 
         res.json({
@@ -215,7 +218,7 @@ exports.updateOrderStatus = (req, res) => {
         });
 
       } catch (emailError) {
-        console.log(emailError);
+        console.log("EMAIL ERROR:", emailError);
 
         res.json({
           message: "Status updated but email could not be sent",
