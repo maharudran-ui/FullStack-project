@@ -229,11 +229,13 @@ exports.updateOrderStatus = (req, res) => {
           console.log("Calling sendOrderStatusEmail()...");
 
           await sendOrderStatusEmail(
-            order.email,
-            order.name,
-            order.id,
-            status
-          );
+  order.email,
+  order.name,
+  order.id,
+  status,
+  order.offer_message,
+  order.final_total
+);
 
           console.log("Email Sent Successfully");
         }
@@ -262,6 +264,7 @@ exports.updateOrderOffer = (req, res) => {
   const {
     discount_type,
     discount_value,
+    offer_message,
   } = req.body;
 
   // Get the original order total
@@ -309,7 +312,8 @@ exports.updateOrderOffer = (req, res) => {
       SET
       discount_type=?,
       discount_value=?,
-      final_total=?
+      final_total=?,
+      offer_message=?
       WHERE id=?
     `;
 
@@ -319,6 +323,7 @@ exports.updateOrderOffer = (req, res) => {
         discount_type,
         discount_value,
         finalTotal,
+         offer_message,
         id
       ],
       (err) => {

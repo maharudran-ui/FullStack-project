@@ -21,6 +21,9 @@ const [discountValue, setDiscountValue] =
 const [finalTotal, setFinalTotal] =
   useState(0);
 
+  const [offerMessage, setOfferMessage] =
+  useState("");
+
   useEffect(() => {
     loadOrder();
   }, []);
@@ -53,6 +56,10 @@ setDiscountValue(
 
 setFinalTotal(
   res.data.final_total
+);
+
+setOfferMessage(
+  res.data.offer_message || ""
 );
 
     } catch (err) {
@@ -90,6 +97,7 @@ setFinalTotal(
         {
           discount_type: discountType,
           discount_value: discountValue,
+           offer_message: offerMessage,
         }
       );
 
@@ -330,6 +338,24 @@ setFinalTotal(
           setDiscountValue(e.target.value)
         }
       />
+      <Form.Group className="mt-3">
+
+  <Form.Label>
+
+    Offer Message
+
+  </Form.Label>
+
+  <Form.Control
+    as="textarea"
+    rows={5}
+    value={offerMessage}
+    onChange={(e)=>
+      setOfferMessage(e.target.value)
+    }
+  />
+
+</Form.Group>
 
     </Form.Group>
 

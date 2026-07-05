@@ -25,26 +25,38 @@ const sendOrderStatusEmail = async (
   email,
   customerName,
   orderId,
-  status
+  status,
+  offerMessage,
+  finalTotal
 ) => {
   let subject = "";
   let message = "";
 
   switch (status) {
-    case "Accepted":
-      subject = "Your Order has been Accepted";
+   case "Accepted":
 
-      message = `
+  subject = "Your Order has been Accepted";
+
+  message = `
 Hello ${customerName},
+
+🎉 Great News!
 
 Your order #${orderId} has been accepted.
 
-We are preparing it for shipment.
+${offerMessage || ""}
+
+Final Total : £${finalTotal}
+
+We are preparing your order for shipment.
 
 Thank you for shopping with Pennymead.
+
+Regards,
+Pennymead Team
 `;
 
-      break;
+break;
 
     case "Shipped":
       subject = "Your Order has been Shipped";
