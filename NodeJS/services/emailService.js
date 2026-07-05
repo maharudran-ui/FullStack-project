@@ -26,7 +26,8 @@ const sendOrderStatusEmail = async (
   customerName,
   orderId,
   status,
-  offerMessage,
+  discountType,
+  discountValue,
   finalTotal
 ) => {
   let subject = "";
@@ -35,18 +36,43 @@ const sendOrderStatusEmail = async (
   switch (status) {
    case "Accepted":
 
-  subject = "Your Order has been Accepted";
+subject = "Your Order has been Accepted";
 
-  message = `
+let discountSection = "";
+
+if (Number(discountValue) > 0) {
+  if (discountType === "Percentage") {
+    discountSection = `
+
+🎉 Special Discount
+
+Dear ${customerName},
+
+We have applied a ${discountValue}% discount to your order.
+
+Final Total : £${finalTotal}
+`;
+  } else {
+    discountSection = `
+
+🎉 Special Discount
+
+Dear ${customerName},
+
+We have applied a £${discountValue} discount to your order.
+
+Final Total : £${finalTotal}
+`;
+  }
+}
+
+message = `
 Hello ${customerName},
 
 🎉 Great News!
 
 Your order #${orderId} has been accepted.
-
-${offerMessage || ""}
-
-Final Total : £${finalTotal}
+${discountSection}
 
 We are preparing your order for shipment.
 
@@ -112,7 +138,7 @@ console.log("To:", email);
 console.log("Subject:", subject);
 
 const info = await transporter.sendMail({
-  from: process.env.EMAIL_USER,
+  from: `"Pennymead" <${process.env.EMAIL_USER}>`,
   to: email,
   subject,
   text: message,
