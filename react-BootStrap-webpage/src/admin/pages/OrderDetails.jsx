@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Card,
-  Row,
-  Col,
-  Form,
-  Button,
-  Table
-} from "react-bootstrap";
+import {Card, Row, Col, Form,Button, Table} from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import AdminLayout from "../layout/AdminLayout";
 import adminApi from "../services/adminApi";
@@ -19,6 +12,14 @@ function OrderDetails() {
 
   const [status, setStatus] =
     useState("Pending");
+    const [discountType, setDiscountType] =
+  useState("Amount");
+
+const [discountValue, setDiscountValue] =
+  useState(0);
+
+const [finalTotal, setFinalTotal] =
+  useState(0);
 
   useEffect(() => {
     loadOrder();
@@ -42,6 +43,17 @@ function OrderDetails() {
 });
 
       setStatus(res.data.status);
+      setDiscountType(
+  res.data.discount_type
+);
+
+setDiscountValue(
+  res.data.discount_value
+);
+
+setFinalTotal(
+  res.data.final_total
+);
 
     } catch (err) {
       console.log(err);
@@ -67,6 +79,35 @@ function OrderDetails() {
       console.log(err);
     }
   };
+
+  const saveOffer = async () => {
+
+  try {
+
+    const res =
+      await adminApi.put(
+        `/orders/offer/${id}`,
+        {
+          discount_type: discountType,
+          discount_value: discountValue,
+        }
+      );
+
+    setFinalTotal(
+      res.data.final_total
+    );
+
+    alert("Offer Updated");
+
+    loadOrder();
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
+
+};
 
   if (!order) return <p>Loading...</p>;
 
@@ -244,6 +285,72 @@ function OrderDetails() {
         </Card.Body>
 
       </Card>
+
+
+      <Card className="mt-4">
+
+  <Card.Body>
+
+    <h5>Offer</h5>
+
+    <Form.Group className="mb-3">
+
+      <Form.Label>
+        Discount Type
+      </Form.Label>
+
+      <Form.Select
+        value={discountType}
+        onChange={(e) =>
+          setDiscountType(e.target.value)
+        }
+      >
+        <option value="Amount">
+          Amount (£)
+        </option>
+
+        <option value="Percentage">
+          Percentage (%)
+        </option>
+
+      </Form.Select>
+
+    </Form.Group>
+
+    <Form.Group className="mb-3">
+
+      <Form.Label>
+        Discount Value
+      </Form.Label>
+
+      <Form.Control
+        type="number"
+        value={discountValue}
+        onChange={(e) =>
+          setDiscountValue(e.target.value)
+        }
+      />
+
+    </Form.Group>
+
+    <h5>
+
+      Final Total :
+
+      £{finalTotal}
+
+    </h5>
+
+    <Button
+      variant="success"
+      onClick={saveOffer}
+    >
+      Save Offer
+    </Button>
+
+  </Card.Body>
+
+</Card>
 
     </AdminLayout>
 

@@ -22,33 +22,58 @@ exports.createOrder = (req, res) => {
   total_price,
 } = req.body;
 
-// console.log(req.body);
-// console.log("Total Price:", total_price);
+
 
   const sql = `
-    INSERT INTO orders
-    (email, name, address1, address2, city, phone, state, zip, country, payment_method, notes, items, total_price, status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `;
+INSERT INTO orders
+(
+email,
+name,
+address1,
+address2,
+city,
+phone,
+state,
+zip,
+country,
+payment_method,
+notes,
+items,
+total_price,
+discount_type,
+discount_value,
+final_total,
+status
+)
+VALUES
+(
+?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+)
+`;
 
   db.query(
     sql,
     [
-      email,
-      name,
-      address1,
-      address2,
-      city,
-      phone,
-      state,
-      zip,
-      country,
-      payment_method,
-      notes,
-   JSON.stringify(items),
-      total_price,
-      "Pending",
-    ],
+  email,
+  name,
+  address1,
+  address2,
+  city,
+  phone,
+  state,
+  zip,
+  country,
+  payment_method,
+  notes,
+  JSON.stringify(items),
+  total_price,
+
+  "Amount",      // discount type
+  0,             // discount value
+  total_price,   // final total
+
+  "Pending",
+],
     (err, result) => {
       if (err) return res.status(500).json(err);
 
@@ -226,4 +251,89 @@ exports.updateOrderStatus = (req, res) => {
       }
     });
   });
+};
+
+
+
+exports.updateOrderOffer = (req, res) => {
+
+  const { id } = req.params;
+
+  const {
+    discount_type,
+    discount_value,
+  } = req.body;
+
+  // Get the original order total
+  const getSql =
+    "SELECT total_price FROM orders WHERE id = ?";
+
+  db.query(getSql, [id], (err, result) => {
+
+    if (err)
+      return res.status(500).json(err);
+
+    if (result.length === 0)
+      return res.status(404).json({
+        message: "Order not found"
+      });
+
+    const total =
+      Number(result[0].total_price);
+
+    let finalTotal = total;
+
+    // Amount Discount
+    if (discount_type === "Amount") {
+
+      finalTotal =
+        total - Number(discount_value);
+
+    }
+
+    // Percentage Discount
+    if (discount_type === "Percentage") {
+
+      finalTotal =
+        total -
+        (total * Number(discount_value)) / 100;
+
+    }
+
+    // Don't allow negative total
+    if (finalTotal < 0)
+      finalTotal = 0;
+
+    const updateSql = `
+      UPDATE orders
+      SET
+      discount_type=?,
+      discount_value=?,
+      final_total=?
+      WHERE id=?
+    `;
+
+    db.query(
+      updateSql,
+      [
+        discount_type,
+        discount_value,
+        finalTotal,
+        id
+      ],
+      (err) => {
+
+        if (err)
+          return res.status(500).json(err);
+
+        res.json({
+          message: "Offer Updated",
+          final_total: finalTotal
+        });
+
+      }
+    );
+
+  });
+
 };
