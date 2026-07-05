@@ -28,6 +28,8 @@ const sendOrderStatusEmail = async (
   status,
   discountType,
   discountValue,
+  gstPercentage,
+  gstAmount,
   finalTotal
 ) => {
   let subject = "";
@@ -73,6 +75,9 @@ Hello ${customerName},
 
 Your order #${orderId} has been accepted.
 ${discountSection}
+GST (${gstPercentage}%) : £${gstAmount}
+
+Final Total : £${finalTotal}
 
 We are preparing your order for shipment.
 

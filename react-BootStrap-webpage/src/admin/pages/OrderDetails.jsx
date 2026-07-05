@@ -21,6 +21,12 @@ const [discountValue, setDiscountValue] =
 const [finalTotal, setFinalTotal] =
   useState(0);
 
+  const [gstPercentage, setGstPercentage] =
+  useState(0);
+
+const [gstAmount, setGstAmount] =
+  useState(0);
+
   
 
   useEffect(() => {
@@ -53,8 +59,20 @@ setDiscountValue(
   res.data.discount_value
 );
 
+setGstAmount(
+  res.data.gst_amount
+);
+
 setFinalTotal(
   res.data.final_total
+);
+
+setGstPercentage(
+  res.data.gst_percentage
+);
+
+setGstAmount(
+  res.data.gst_amount
 );
 
 
@@ -91,11 +109,11 @@ setFinalTotal(
     const res =
       await adminApi.put(
         `/orders/offer/${id}`,
-        {
-          discount_type: discountType,
-          discount_value: discountValue,
-           
-        }
+      {
+  discount_type: discountType,
+  discount_value: discountValue,
+  gst_percentage: gstPercentage,
+}
       );
 
     setFinalTotal(
@@ -338,13 +356,31 @@ setFinalTotal(
      
     </Form.Group>
 
+    <Form.Group className="mb-3">
+
+  <Form.Label>
+    GST Percentage
+  </Form.Label>
+
+  <Form.Control
+    type="number"
+    value={gstPercentage}
+    onChange={(e) =>
+      setGstPercentage(e.target.value)
+    }
+  />
+
+</Form.Group>
+
     <h5>
+  GST Amount :
+  £{gstAmount}
+</h5>
 
-      Final Total :
-
-      £{finalTotal}
-
-    </h5>
+<h5 className="mt-3">
+  Final Total :
+  £{finalTotal}
+</h5>
 
     <Button
       variant="success"

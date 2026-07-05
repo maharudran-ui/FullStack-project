@@ -42,37 +42,43 @@ items,
 total_price,
 discount_type,
 discount_value,
+gst_percentage,
+gst_amount,
 final_total,
 status
 )
 VALUES
 (
-?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
 )
 `;
 
   db.query(
     sql,
-    [
-  email,
-  name,
-  address1,
-  address2,
-  city,
-  phone,
-  state,
-  zip,
-  country,
-  payment_method,
-  notes,
-  JSON.stringify(items),
-  total_price,
+  [
+email,
+name,
+address1,
+address2,
+city,
+phone,
+state,
+zip,
+country,
+payment_method,
+notes,
+JSON.stringify(items),
+total_price,
 
-  "Amount",      // discount type
-  0,             // discount value
-  total_price,   // final total
+"Amount",
+0,
 
-  "Pending",
+0,      // GST Percentage
+0,      // GST Amount
+
+total_price,
+
+"Pending",
 ],
     (err, result) => {
       if (err) return res.status(500).json(err);
@@ -235,6 +241,8 @@ exports.updateOrderStatus = (req, res) => {
   status,
   order.discount_type,
   order.discount_value,
+  order.gst_percentage,
+  order.gst_amount,
   order.final_total
 );
 
@@ -262,11 +270,11 @@ exports.updateOrderOffer = (req, res) => {
 
   const { id } = req.params;
 
-  const {
-    discount_type,
-    discount_value,
-    
-  } = req.body;
+const {
+  discount_type,
+  discount_value,
+  gst_percentage,
+} = req.body;
 
   // Get the original order total
   const getSql =
@@ -286,6 +294,7 @@ exports.updateOrderOffer = (req, res) => {
       Number(result[0].total_price);
 
     let finalTotal = total;
+    let gstAmount = 0;
 
     // Amount Discount
     if (discount_type === "Amount") {
@@ -305,36 +314,49 @@ exports.updateOrderOffer = (req, res) => {
     }
 
     // Don't allow negative total
-    if (finalTotal < 0)
-      finalTotal = 0;
+  // Don't allow negative total
+if (finalTotal < 0)
+  finalTotal = 0;
 
-    const updateSql = `
-      UPDATE orders
-      SET
-      discount_type=?,
-      discount_value=?,
-      final_total=?
-      WHERE id=?
-    `;
+// Calculate GST
+gstAmount =
+  (finalTotal * Number(gst_percentage)) / 100;
+
+// Add GST
+finalTotal =
+  finalTotal + gstAmount;
+
+  const updateSql = `
+UPDATE orders
+SET
+discount_type=?,
+discount_value=?,
+gst_percentage=?,
+gst_amount=?,
+final_total=?
+WHERE id=?
+`;
 
     db.query(
       updateSql,
       [
-        discount_type,
-        discount_value,
-        finalTotal,
-        
-        id
-      ],
+discount_type,
+discount_value,
+gst_percentage,
+gstAmount,
+finalTotal,
+id
+],
       (err) => {
 
         if (err)
           return res.status(500).json(err);
 
-        res.json({
-          message: "Offer Updated",
-          final_total: finalTotal
-        });
+      res.json({
+  message: "Offer Updated",
+  gst_amount: gstAmount,
+  final_total: finalTotal
+});
 
       }
     );
