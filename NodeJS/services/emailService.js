@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
+  port: 587,
   secure: true,
   auth: {
     user: process.env.EMAIL_USER,
@@ -12,14 +12,14 @@ const transporter = nodemailer.createTransport({
 
 console.log("EMAIL_USER:", process.env.EMAIL_USER);
 console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Loaded" : "Missing");
-// transporter.verify((error, success) => {
-//   if (error) {
-//     console.log("SMTP VERIFY ERROR:");
-//     console.log(error);
-//   } else {
-//     console.log("SMTP Server Ready");
-//   }
-// });
+transporter.verify((error, success) => {
+  if (error) {
+    console.log("SMTP VERIFY ERROR:");
+    console.log(error);
+  } else {
+    console.log("SMTP Server Ready");
+  }
+});
 
 const sendOrderStatusEmail = async (
   email,
