@@ -335,6 +335,8 @@ const handleVerify = async () => {
     setSearchScope={setSearchScope}
     searchDescription={searchDescription}
     setSearchDescription={setSearchDescription}
+     setSearchKeyword={setSearchKeyword}
+    setSearchClicked={setSearchClicked}
     onSearch={() => {
     setSearchKeyword(searchText);
     setSearchClicked(true);

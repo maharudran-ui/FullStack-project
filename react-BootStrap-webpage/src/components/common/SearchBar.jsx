@@ -10,8 +10,11 @@ function SearchBar({
   setSearchScope,
   searchDescription,
   setSearchDescription,
+  setSearchKeyword,
+  setSearchClicked,
   onSearch,
 }) {
+
 
   useEffect(() => {
     if (searchText.trim() === "") {
