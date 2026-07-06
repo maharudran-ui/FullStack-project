@@ -250,6 +250,7 @@ exports.getProductsByValue = (req, res) => {
   SELECT
   product_id,
   tittle,
+  description,
   author,
   price,
   product_image,
@@ -363,19 +364,20 @@ if (page > totalPages) {
 }
 
     const sql = `
-      SELECT
-        product_id,
-        tittle,
-        author,
-        price,
-        product_image,
-        stock_data,
-        category_id
-    FROM products
+SELECT
+product_id,
+tittle,
+description,
+author,
+price,
+product_image,
+stock_data,
+category_id
+FROM products
 ORDER BY ${orderBy}
 LIMIT ?
 OFFSET ?
-    `;
+`;
 
     db.query(
       sql,
