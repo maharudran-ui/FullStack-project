@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+NodeJS/.env
+react-BootStrap-webpage/.env
+
+NodeJS/node_modules/
+react-BootStrap-webpage/node_modules/

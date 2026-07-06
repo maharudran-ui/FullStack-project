@@ -12,14 +12,14 @@ const transporter = nodemailer.createTransport({
 
 console.log("EMAIL_USER:", process.env.EMAIL_USER);
 console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Loaded" : "Missing");
-transporter.verify((error, success) => {
-  if (error) {
-    console.log("SMTP VERIFY ERROR:");
-    console.log(error);
-  } else {
-    console.log("SMTP Server Ready");
-  }
-});
+// transporter.verify((error, success) => {
+//   if (error) {
+//     console.log("SMTP VERIFY ERROR:");
+//     console.log(error);
+//   } else {
+//     console.log("SMTP Server Ready");
+//   }
+// });
 
 const sendOrderStatusEmail = async (
   email,
@@ -142,15 +142,20 @@ console.log("Sending email...");
 console.log("To:", email);
 console.log("Subject:", subject);
 
-const info = await transporter.sendMail({
-  from: `"Pennymead" <${process.env.EMAIL_USER}>`,
-  to: email,
-  subject,
-  text: message,
-});
+try {
+  const info = await transporter.sendMail({
+    from: `"Pennymead" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject,
+    text: message,
+  });
 
-console.log("Email sent successfully");
-console.log(info);
+  console.log("SUCCESS");
+  console.log(info);
+} catch (err) {
+  console.log("SENDMAIL ERROR");
+  console.log(err);
+}
 };
 
 module.exports = {
