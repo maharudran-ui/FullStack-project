@@ -94,7 +94,7 @@ total_price,
 
 
 exports.getOrders = (req, res) => {
-  const sql = "SELECT * FROM orders ORDER BY id DESC";
+  const sql = "SELECT * FROM orders ORDER BY id ASC";
 
   db.query(sql, (err, result) => {
     if (err) return res.status(500).json(err);
@@ -186,7 +186,7 @@ exports.updateOrderStatus = (req, res) => {
   order.final_total
 );
 
-          console.log("Email Sent Successfully");
+          // console.log("Email Sent Successfully");
         }
 
         res.json({
