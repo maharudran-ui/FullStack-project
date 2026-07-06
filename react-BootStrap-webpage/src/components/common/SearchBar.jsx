@@ -2,22 +2,46 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import "../../styles/SearchBar.css";
 
-function SearchBar({searchText,setSearchText,searchScope,setSearchScope,searchDescription,  setSearchDescription,
+function SearchBar({
+  searchText,
+  setSearchText,
+  searchScope,
+  setSearchScope,
+  searchDescription,
+  setSearchDescription,
+  onSearch,
 }) {
+
+  useEffect(() => {
+    if (searchText.trim() === "") {
+        setSearchKeyword("");
+        setSearchClicked(false);
+    }
+}, [searchText]);
   return (
     <div className="search-wrapper">
 
       <div className="search-input-wrapper">
 
-        <input
-          type="text"
-          className="search-input"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          placeholder="Search..."
-        />
+ <input
+    type="text"
+    className="search-input"
+    value={searchText}
+    onChange={(e)=>setSearchText(e.target.value)}
+    onKeyDown={(e)=>{
+        if(e.key==="Enter"){
+            onSearch();
+        }
+    }}
+    placeholder="Search..."
+/>
 
-        <button className="search-button">
+        
+
+<button
+  className="search-button"
+  onClick={onSearch}
+>
           <FaSearch className="search-icon" />
         </button>
 

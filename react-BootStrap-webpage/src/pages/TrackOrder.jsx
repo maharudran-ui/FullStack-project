@@ -24,16 +24,18 @@ function TrackOrder() {
   const itemsPerPage = 8;
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [searchClicked, setSearchClicked] = useState(false);
   
 const [allProducts, setAllProducts] = useState([]);
 const [searchText, setSearchText] = useState("");
+const [searchKeyword, setSearchKeyword] = useState("");
 const [searchScope, setSearchScope] = useState("catalogue");
 const [searchDescription, setSearchDescription] = useState(false);
 
 
 useEffect(() => {
     setCurrentPage(1);
-}, [searchText, searchScope, searchDescription]);
+}, [searchKeyword, searchScope, searchDescription]);
 
   
   const location = useLocation();
@@ -159,35 +161,36 @@ let filteredProducts = products;
 // user selected Whole Catalogue AND entered text
 
 if (
-  searchScope === "catalogue" &&
-  searchText.trim() !== ""
+searchScope === "catalogue" &&
+searchKeyword.trim() !== ""
 ) {
   filteredProducts = allProducts;
 }
 
 // Search
-if (searchText.trim()) {
+if (searchKeyword.trim() !== "") {
 
-  filteredProducts = filteredProducts.filter((product) => {
+  const keyword =
+searchKeyword.trim().toLowerCase();
 
-    const keyword = searchText.toLowerCase();
+  filteredProducts = filteredProducts.filter(product => {
+
+    const title =
+      (product.title || product.tittle || "")
+      .toLowerCase();
+
+    const description =
+      (product.description || "")
+      .toLowerCase();
 
     if (searchDescription) {
-
       return (
-        product.description &&
-        product.description
-          .toLowerCase()
-          .includes(keyword)
+        title.includes(keyword) ||
+        description.includes(keyword)
       );
-
     }
 
-    return (
-      (product.title || product.tittle || "")
-        .toLowerCase()
-        .includes(keyword)
-    );
+    return title.includes(keyword);
 
   });
 
@@ -332,6 +335,10 @@ const handleVerify = async () => {
     setSearchScope={setSearchScope}
     searchDescription={searchDescription}
     setSearchDescription={setSearchDescription}
+    onSearch={() => {
+    setSearchKeyword(searchText);
+    setSearchClicked(true);
+}}
 />}
                   </div>
                 </Col>
@@ -340,9 +347,20 @@ const handleVerify = async () => {
 
             {/* DYNAMIC HEADER DESCRIPTIONS */}
             <div className="mb-4">
-              <h1 style={{ fontFamily: "Georgia, serif", color: "#2d3748", fontWeight: "bold", fontSize: "2.2rem" }} className="mb-3">
-                {activeCategory}
-              </h1>
+
+{!searchClicked && (
+<>
+  <h1
+    style={{
+      fontFamily: "Georgia, serif",
+      color: "#2d3748",
+      fontWeight: "bold",
+      fontSize: "2.2rem"
+    }}
+    className="mb-3"
+  >
+    {activeCategory}
+  </h1>
           
               {activeCategory === "West Indies Books" && (
                 <div className="mt-4 mb-5 px-2" style={{ fontFamily: "Georgia, serif", color: "#2d3748", fontSize: "1.05rem", lineHeight: "1.6" }}>
@@ -384,6 +402,8 @@ const handleVerify = async () => {
                   <p className="mb-4 text-start">Old picture postcards from the Caribbean islands for sale plus a few collectable cards from around the World. Post and packing is extra but does not increase however many items are ordered. Inland £1, Europe and Overseas £3</p>
                 </div>
               )}
+              </>
+)}
             </div>
 
             {/* FILTER BUTTONS */}
@@ -409,6 +429,26 @@ const handleVerify = async () => {
                 </button>
               ))}
             </div>
+
+
+{searchClicked && searchKeyword.trim() !== "" && (
+  <div
+    style={{
+      marginBottom: "20px",
+      fontSize: "16px",
+      color: "#555",
+    }}
+  >
+    Showing items that contain the search term{" "}
+    <strong>"{searchKeyword}"</strong> in{" "}
+    <strong>
+      {searchScope === "catalogue"
+        ? "Whole Catalogue"
+        : activeCategory}
+    </strong>
+  </div>
+)}
+
 
             {/* PRODUCT GRIDS */}
             {paginatedProducts.length > 0 ? (
