@@ -23,6 +23,7 @@ function TrackOrder() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
   
 const [allProducts, setAllProducts] = useState([]);
 const [searchText, setSearchText] = useState("");
@@ -237,13 +238,25 @@ const filterByValue = async (valueId) => {
 
   const isProductCategory = Object.keys(categoryMap).includes(activeCategory);
 
-  const handleVerify = () => {
-    if (email.trim() !== "") {
-      setVerified(true);
-    } else {
-      alert("Please enter your email address");
-    }
-  };
+const handleVerify = async () => {
+
+  try {
+
+    const res = await api.get(`/orders/track/${email}`);
+
+    setOrders(res.data);
+
+    setVerified(true);
+
+  } catch (err) {
+
+    console.log(err);
+
+    alert("No orders found");
+
+  }
+
+};
 
   // Shared drop-down theme styling
   const selectStyle = {
@@ -500,6 +513,41 @@ const filterByValue = async (valueId) => {
               <div style={{ marginTop: "20px" }}>
                 <h4 style={{ fontFamily: "Georgia, serif", color: "#803300" }}>Your Orders</h4>
                 <p className="text-muted">Showing order status information for: {email}</p>
+                <table className="table table-bordered mt-3">
+
+<thead>
+
+<tr>
+
+<th>Order ID</th>
+
+<th>Status</th>
+
+<th>Total</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{orders.map(order => (
+
+<tr key={order.id}>
+
+<td>#{order.id}</td>
+
+<td>{order.status}</td>
+
+<td>£{order.final_total}</td>
+
+</tr>
+
+))}
+
+</tbody>
+
+</table>
               </div>
             )}
           </div>

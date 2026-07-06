@@ -304,3 +304,32 @@ id
   });
 
 };
+
+
+
+exports.getOrdersByEmail = (req, res) => {
+
+  const { email } = req.params;
+
+  const sql = `
+    SELECT
+      id,
+      status,
+      final_total,
+      total_price,
+      created_at
+    FROM orders
+    WHERE email = ?
+    ORDER BY id DESC
+  `;
+
+  db.query(sql, [email], (err, result) => {
+
+    if (err)
+      return res.status(500).json(err);
+
+    res.json(result);
+
+  });
+
+};

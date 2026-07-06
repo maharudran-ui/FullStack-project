@@ -1,55 +1,8 @@
-// import React from "react";
-// import { FaSearch } from "react-icons/fa";
-// import "../../styles/SearchBar.css";
-
-// function SearchBar() {
-//   return (
-//     <div className="search-wrapper">
-//       <div className="search-input-wrapper">
-
-//         <input type="text" placeholder="" className="search-input"/>
-
-//         <button className="search-button">
-//           <FaSearch className="search-icon" />
-//         </button>
-//       </div>
-
-      
-//       <div className="search-filters">
-
-//         <label className="search-label">
-//           <input type="radio" name="search" defaultChecked />
-//           Whole Catalogue
-//         </label>
-
-//         <label className="search-label">
-//           <input type="radio" name="search" />
-//           This Category
-//         </label>
-
-//         <label className="search-label">
-//           <input type="checkbox" />
-//           Search by description
-//         </label>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default SearchBar;
-
-
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import "../../styles/SearchBar.css";
 
-function SearchBar({
-  searchText,
-  setSearchText,
-  searchScope,
-  setSearchScope,
-  searchDescription,
-  setSearchDescription,
+function SearchBar({searchText,setSearchText,searchScope,setSearchScope,searchDescription,  setSearchDescription,
 }) {
   return (
     <div className="search-wrapper">
