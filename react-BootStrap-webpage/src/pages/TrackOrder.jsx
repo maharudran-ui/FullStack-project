@@ -142,17 +142,7 @@ useEffect(() => {
   }
 }, [activeCategory]);
 
-  // Get raw local list matching active category
-  // const getProcessedProducts = () => {
-  //   let list = [];
-  //   if (activeCategory === "Philatelic Books") list = philatelicBooks;
-  //   else if (activeCategory === "West Indies Books") list = westIndiesBooks;
-  //   else if (activeCategory === "Miscellaneous books") list = miscellaneousBooks;
-  //   else if (activeCategory === "Maps, Prints, Photographs Ephemera") list = mapsEphemera;
-  //   else if (activeCategory === "Old Picture Postcards") list = oldPostcards;
-  //   else if (activeCategory === "Stamps and Covers") list = stampsCovers;
-  //   return list;
-  // };
+
 
  
 let filteredProducts = products;
@@ -175,22 +165,22 @@ searchKeyword.trim().toLowerCase();
 
   filteredProducts = filteredProducts.filter(product => {
 
-    const title =
-      (product.title || product.tittle || "")
-      .toLowerCase();
+    const author =
+  (product.author || "")
+    .toLowerCase();
 
-    const description =
-      (product.description || "")
-      .toLowerCase();
+const description =
+  (product.description || "")
+    .toLowerCase();
 
-    if (searchDescription) {
-      return (
-        title.includes(keyword) ||
-        description.includes(keyword)
-      );
-    }
+if (searchDescription) {
+  return (
+    author.includes(keyword) ||
+    description.includes(keyword)
+  );
+}
 
-    return title.includes(keyword);
+return author.includes(keyword);
 
   });
 
