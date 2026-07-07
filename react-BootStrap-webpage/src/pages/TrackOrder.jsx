@@ -280,23 +280,33 @@ const handleVerify = async () => {
             
             <div>
               
-              <h5
+       <h5
   style={{
     fontFamily: "Georgia, serif",
     color: "#803300",
     fontWeight: "bold",
-    visibility: searchClicked ? "hidden" : "visible"
+    visibility:
+      searchClicked && searchScope === "catalogue"
+        ? "hidden"
+        : "visible"
   }}
-  className="mt-5 mb-3"
 >
   Search by
 </h5>
               
               <Row className="align-items-start mb-5 gy-3">
                 
-                <Col xs={12} md={6} className="d-flex gap-2 flex-wrap" style={{
-    visibility: searchClicked ? "hidden" : "visible"
-  }}>
+    <Col
+  xs={12}
+  md={6}
+  className="d-flex gap-2 flex-wrap"
+  style={{
+    visibility:
+      searchClicked && searchScope === "catalogue"
+        ? "hidden"
+        : "visible"
+  }}
+>
                   
                   {/* API DYNAMIC DROPDOWNS */}
                   {groups.map((group) => (
@@ -365,7 +375,7 @@ const handleVerify = async () => {
             {/* DYNAMIC HEADER DESCRIPTIONS */}
             <div className="mb-4">
 
-{!searchClicked && (
+{!(searchClicked && searchScope === "catalogue") && (
 <>
   <h1
     style={{
