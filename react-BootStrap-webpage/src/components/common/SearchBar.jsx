@@ -54,7 +54,17 @@ function SearchBar({
 
       <div className="search-filters">
 
-        {!(searchClicked && searchScope === "catalogue") && (
+        <label className="search-label">
+          <input
+            type="radio"
+            name="searchScope"
+            checked={searchScope === "catalogue"}
+            onChange={() => setSearchScope("catalogue")}
+          />
+          Whole Catalogue
+        </label>
+
+      {!(searchClicked && searchScope === "catalogue") && (
   <label className="search-label">
     <input
       type="radio"
@@ -65,16 +75,6 @@ function SearchBar({
     This Category
   </label>
 )}
-
-        <label className="search-label">
-          <input
-            type="radio"
-            name="searchScope"
-            checked={searchScope === "category"}
-            onChange={() => setSearchScope("category")}
-          />
-          This Category
-        </label>
 
         <label className="search-label">
           <input
