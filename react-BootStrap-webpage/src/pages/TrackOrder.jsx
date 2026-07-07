@@ -402,6 +402,24 @@ const handleVerify = async () => {
 )}
             </div>
 
+            {searchClicked && searchKeyword.trim() !== "" && (
+  <div
+    style={{
+      marginBottom: "20px",
+      fontSize: "16px",
+      color: "#555",
+    }}
+  >
+    Showing items that contain the search term{" "}
+    <strong>"{searchKeyword}"</strong> in{" "}
+    <strong>
+      {searchScope === "catalogue"
+        ? "Whole Catalogue"
+        : activeCategory}
+    </strong>
+  </div>
+)}
+
             {/* FILTER BUTTONS */}
             <div className="d-flex flex-wrap gap-2 mt-4 mb-5">
               {[
@@ -427,7 +445,7 @@ const handleVerify = async () => {
             </div>
 
 
-{searchClicked && searchKeyword.trim() !== "" && (
+{/* {searchClicked && searchKeyword.trim() !== "" && (
   <div
     style={{
       marginBottom: "20px",
@@ -443,7 +461,7 @@ const handleVerify = async () => {
         : activeCategory}
     </strong>
   </div>
-)}
+)} */}
 
 
             {/* PRODUCT GRIDS */}
