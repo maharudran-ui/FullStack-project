@@ -277,13 +277,21 @@ const handleVerify = async () => {
 
             
             <div>
-              {!searchClicked && (
-              <h5 style={{ fontFamily: "Georgia, serif", color: "#803300", fontWeight: "bold" }} className="mt-5 mb-3">
-                Search by
-              </h5>
-              )}
+              
+              <h5
+  style={{
+    fontFamily: "Georgia, serif",
+    color: "#803300",
+    fontWeight: "bold",
+    visibility: searchClicked ? "hidden" : "visible"
+  }}
+  className="mt-5 mb-3"
+>
+  Search by
+</h5>
+              
               <Row className="align-items-start mb-5 gy-3">
-                {!searchClicked && (
+                
                 <Col xs={12} md={6} className="d-flex gap-2 flex-wrap" style={{
     visibility: searchClicked ? "hidden" : "visible"
   }}>
@@ -323,7 +331,7 @@ const handleVerify = async () => {
 ))}
 
                 </Col>
-                )}
+               
                 <Col xs={12} md={6} className="d-flex flex-column align-items-md-end text-dark">
                   <div className="d-flex align-items-center gap-2 mb-3">
                     {activeCategory && <SearchBar
