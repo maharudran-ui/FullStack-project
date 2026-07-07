@@ -343,10 +343,14 @@ const handleVerify = async () => {
     setSearchDescription={setSearchDescription}
      setSearchKeyword={setSearchKeyword}
     setSearchClicked={setSearchClicked}
+    searchClicked={searchClicked}
     onSearch={() => {
     setSearchKeyword(searchText);
     setSearchClicked(true);
     setSearchText("");
+     if (searchScope === "catalogue") {
+        setActiveCategory("");
+    }
 }}
 />}
                   </div>
