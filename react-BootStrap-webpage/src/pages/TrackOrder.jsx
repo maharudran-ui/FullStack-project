@@ -576,6 +576,8 @@ const handleVerify = async () => {
 <th>Order ID</th>
 
 <th>Status</th>
+<th>Discount</th>
+<th>GST</th>
 
 <th>Total</th>
 
