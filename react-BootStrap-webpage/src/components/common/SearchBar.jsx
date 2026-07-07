@@ -16,12 +16,12 @@ function SearchBar({
 }) {
 
 
-  useEffect(() => {
-    if (searchText.trim() === "") {
-        setSearchKeyword("");
-        setSearchClicked(false);
-    }
-}, [searchText]);
+//   useEffect(() => {
+//     if (searchText.trim() === "") {
+//         setSearchKeyword("");
+//         setSearchClicked(false);
+//     }
+// }, [searchText]);
   return (
     <div className="search-wrapper">
 

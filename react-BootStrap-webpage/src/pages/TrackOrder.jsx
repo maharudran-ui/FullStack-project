@@ -274,6 +274,8 @@ const handleVerify = async () => {
 
         {isProductCategory ? (
           <div className="animate-fade-in">
+
+            {!searchClicked && (
             <div>
               <h5 style={{ fontFamily: "Georgia, serif", color: "#803300", fontWeight: "bold" }} className="mt-5 mb-3">
                 Search by
@@ -330,12 +332,14 @@ const handleVerify = async () => {
     onSearch={() => {
     setSearchKeyword(searchText);
     setSearchClicked(true);
+    setSearchText("");
 }}
 />}
                   </div>
                 </Col>
               </Row>
             </div>
+            )}
 
             {/* DYNAMIC HEADER DESCRIPTIONS */}
             <div className="mb-4">
