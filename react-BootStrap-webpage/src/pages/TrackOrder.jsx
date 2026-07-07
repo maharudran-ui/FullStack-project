@@ -289,7 +289,7 @@ const handleVerify = async () => {
       searchClicked && searchScope === "catalogue"
         ? "hidden"
         : "visible"
-  }}
+  }} className="mt-5 mb-3"
 >
   Search by
 </h5>
