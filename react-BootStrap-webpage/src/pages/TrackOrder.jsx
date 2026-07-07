@@ -265,14 +265,32 @@ const handleVerify = async () => {
     <div style={{ backgroundColor: "#efefc8", minHeight: "100vh", paddingBottom: "80px" }}>
       <Container fluid="lg">
         {/* CATEGORIES NAVIGATION MENU */}
-        <CategoriesBar
+        {/* <CategoriesBar
           activeCategory={activeCategory}
           setActiveCategory={(category) => {
             setHideCategoryHighlight(false);
             setActiveCategory(category);
             setCurrentPage(1);
           }}
-        />
+        /> */}
+        <CategoriesBar
+  activeCategory={activeCategory}
+  setActiveCategory={(category) => {
+
+    // Reset search
+    setSearchText("");
+    setSearchKeyword("");
+    setSearchClicked(false);
+    setSearchScope("category");
+    setSearchDescription(false);
+
+    setHideCategoryHighlight(false);
+
+    setActiveCategory(category);
+     loadProductsByCategory(category);
+    setCurrentPage(1);
+  }}
+/>
 
         {isProductCategory ? (
           <div className="animate-fade-in">
