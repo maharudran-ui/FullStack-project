@@ -410,7 +410,7 @@ const handleVerify = async () => {
       color: "#555",
     }}
   >
-    Showing items that contain the search term{" "}
+   <strong> Showing items that contain the search term</strong>{" "}
     <strong>"{searchKeyword}"</strong> in{" "}
     <strong>
       {searchScope === "catalogue"
@@ -592,6 +592,8 @@ const handleVerify = async () => {
 <td>#{order.id}</td>
 
 <td>{order.status}</td>
+<td>{order.discount_value}</td>
+<td>{order.gst_amount}</td>
 
 <td>£{order.final_total}</td>
 
