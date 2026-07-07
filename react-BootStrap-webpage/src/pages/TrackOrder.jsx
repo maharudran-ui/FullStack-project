@@ -329,7 +329,7 @@ const handleVerify = async () => {
     setSearchClicked={setSearchClicked}
     onSearch={() => {
     setSearchKeyword(searchText);
-    setSearchClicked(true);
+    setSearchClicked("");
 }}
 />}
                   </div>
