@@ -31,6 +31,7 @@ const [searchText, setSearchText] = useState("");
 const [searchKeyword, setSearchKeyword] = useState("");
 const [searchScope, setSearchScope] = useState("catalogue");
 const [searchDescription, setSearchDescription] = useState(false);
+const [hideCategoryHighlight, setHideCategoryHighlight] = useState(false);
 
 
 useEffect(() => {
@@ -267,6 +268,7 @@ const handleVerify = async () => {
         <CategoriesBar
           activeCategory={activeCategory}
           setActiveCategory={(category) => {
+            setHideCategoryHighlight(false);
             setActiveCategory(category);
             setCurrentPage(1);
           }}
@@ -349,8 +351,9 @@ const handleVerify = async () => {
     setSearchClicked(true);
     setSearchText("");
      if (searchScope === "catalogue") {
-        setActiveCategory("");
+        setHideCategoryHighlight(true);
     }
+     
 }}
 />}
                   </div>
