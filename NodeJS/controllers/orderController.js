@@ -316,7 +316,7 @@ exports.getOrdersByEmail = (req, res) => {
       id,
       status,
       discount_value,
-      gst_amount
+      gst_amount,
       final_total,
       total_price,
       created_at
