@@ -21,7 +21,7 @@ function TrackOrder() {
   const [verified, setVerified] = useState(false);
   const [activeFilter, setActiveFilter] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 1;
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);

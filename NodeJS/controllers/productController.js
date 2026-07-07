@@ -404,7 +404,7 @@ OFFSET ?
 
                   // Update Product
 
-                  exports.updateProduct = (req, res) => {
+   exports.updateProduct = (req, res) => {
   const id = Number(req.params.id);
 
   if (!Number.isInteger(id) || id <= 0) {
