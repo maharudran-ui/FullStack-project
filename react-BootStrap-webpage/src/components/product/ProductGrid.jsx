@@ -7,7 +7,7 @@ function ProductGrid({ products }) {
 
       {products.map((item) => (
 
-        <Col lg={4} md={6} sm={6} xs={12} key={item.id}>
+        <Col lg={4} md={6} sm={6} xs={12}  key={item.product_id || item.id}>
           <ProductCard product={item} />
         </Col>
 

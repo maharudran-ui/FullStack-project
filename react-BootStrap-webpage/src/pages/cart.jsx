@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,20 @@ import "../styles/cart.css";
 function Cart() {
   const navigate = useNavigate();
   const formRef = useRef();
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+  loadProducts();
+}, []);
+
+const loadProducts = async () => {
+  try {
+    const res = await api.get("/products?limit=100");
+
+    setProducts(res.data.products);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [activeCategory, setActiveCategory] = useState("");

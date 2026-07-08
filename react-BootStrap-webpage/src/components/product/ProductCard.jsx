@@ -5,12 +5,14 @@ import "../../styles/product.css";
 function ProductCard({ product }) {
   const navigate = useNavigate();
 
- const handleClick = () => {
- navigate("/track-order", {
-  state: {
-    category: product.category_name,
-  },
-});
+const handleClick = () => {
+  navigate("/track-order", {
+    state: {
+      category:
+        product.category_name ||
+        categoryMap[product.category_id],
+    },
+  });
 };
 
 const categoryMap = {
@@ -52,7 +54,8 @@ const categoryMap = {
 </Card.Text>
 
 <Card.Text className="collectable-category">
- {product.category_name || product.category}
+  {product.category_name ||
+    categoryMap[product.category_id]}
 </Card.Text>
       </Card.Body>
     </Card>
