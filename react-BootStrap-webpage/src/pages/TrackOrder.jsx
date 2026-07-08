@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Dropdown } from "react-bootstrap";
 import WestindiesBookGrid from "../components/product/WestIndiesBooksGrid";
 import CategoriesBar from "../components/common/CategoriesBar";
 import SearchBar from "../components/common/SearchBar";
@@ -278,7 +278,7 @@ function TrackOrder() {
                   }}
                 >
                   {/* API DYNAMIC DROPDOWNS */}
-                  {groups.map((group) => (
+                  {/* {groups.map((group) => (
                     <Form.Select
                       key={group.group_id}
                       style={selectStyle}
@@ -303,7 +303,34 @@ function TrackOrder() {
                         </option>
                       ))}
                     </Form.Select>
-                  ))}
+                  ))} */}
+                  {groups.map((group) => (
+  <Dropdown key={group.group_id} className="me-2 mb-2">
+
+    <Dropdown.Toggle
+      variant="secondary"
+      style={selectStyle}
+    >
+      {group.group_name}
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu>
+
+      {groupValues[group.group_id]?.map((val) => (
+
+        <Dropdown.Item
+          key={val.value_id}
+          onClick={() => filterByValue(val.value_id)}
+        >
+          {val.value_name}
+        </Dropdown.Item>
+
+      ))}
+
+    </Dropdown.Menu>
+
+  </Dropdown>
+))}
                 </Col>
 
                 <Col
