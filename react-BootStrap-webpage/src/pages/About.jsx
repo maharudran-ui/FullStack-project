@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import AboutImg from "../assets/images/Aboutimg.png";
 import AboutImg2 from "../assets/images/Aboutimg2.png";
-// import products from "../data/products";
 import ProductGrid from "../components/product/ProductGrid";
 import "../styles/About.css";
 import { useState, useEffect } from "react";

@@ -5,7 +5,7 @@ import adminApi from "../services/adminApi";
 
 function EditProduct() {
   const [product, setProduct] = useState({
-    id: 1, // IMPORTANT: replace with real product id (from params or props)
+    id: 1, 
     author: "",
     tittle: "",
     description: "",

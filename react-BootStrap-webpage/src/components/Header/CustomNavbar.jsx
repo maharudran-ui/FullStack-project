@@ -60,7 +60,6 @@ function CustomNavbar() {
 
             </Button>
 
-            {/* TABLET/DESKTOP CART */}
          
 {/* TABLET/DESKTOP CART */}
 <Button

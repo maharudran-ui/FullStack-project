@@ -36,7 +36,6 @@
   color: white;
 }
 
-
 .mobile-category-dropdown {
   width: 100%;
   padding: 12px;
@@ -45,11 +44,10 @@
   background: #803300;
   color: white;
   font-size: 14px;
-  border-radius: 30px; 
+  border-radius: 30px;
 }
 
 .mobile-category-dropdown option {
   background-color: white;
   color: black;
 }
-

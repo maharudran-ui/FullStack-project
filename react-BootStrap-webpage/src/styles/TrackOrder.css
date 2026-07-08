@@ -21,8 +21,6 @@
   border-left: none;
 }
 
-
-
 .track-input-wrapper {
   display: flex;
   align-items: center;
@@ -57,7 +55,6 @@
 }
 
 .active-category {
-  
   color: #000;
   font-weight: normal;
 }
@@ -66,22 +63,19 @@
   background-color: #ffffff;
 }
 
-
 .form-select {
   border-radius: 20px !important;
-   background-color: white;
+  background-color: white;
   color: black;
   font-family: inherit;
   font-size: 0.95rem;
   padding: 8px 34px 8px 16px !important;
 }
 
-
 .track-category-btn {
   cursor: pointer;
   font-family: Georgia, serif;
 }
-
 
 .animate-fade-in {
   animation: fadeInEffect 0.4s ease-in-out forwards;
