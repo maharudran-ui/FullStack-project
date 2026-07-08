@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import CategoriesBar from "../components/common/CategoriesBar";
 import CartItem from "../components/cart/CartItem";
 import ProductGrid from "../components/product/ProductGrid";
-import products from "../data/products";
 import api from "../services/api";
 import "../styles/cart.css";
 
