@@ -1,4 +1,4 @@
-// src/components/features/OldPostcardsCard.jsx
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { useDispatch } from "react-redux";
