@@ -31,14 +31,14 @@ function Dashboard() {
   return (
     <AdminLayout>
       <Row>
-         <Col md={3}>
-          {/* <Card>
+         {/* <Col md={3}>
+          <Card>
             <Card.Body>
               <h3>{stats.users}</h3>
               <p>Total Users</p>
             </Card.Body>
-          </Card> */}
-        </Col>
+          </Card>
+        </Col> */}
         <Col md={3}>
           <Card>
             <Card.Body>
@@ -48,14 +48,14 @@ function Dashboard() {
           </Card>
         </Col>
 
-         <Col md={3}>
-          {/* <Card>
+         {/* <Col md={3}>
+          <Card>
             <Card.Body>
               <h3>{stats.Revnue}</h3>
               <p>Revnue</p>
             </Card.Body>
-          </Card> */}
-        </Col>
+          </Card>
+        </Col> */}
 
         <Col md={3}>
           <Card>
