@@ -310,11 +310,7 @@ function TrackOrder() {
                 {groups.map((group) => (
   <div
     key={group.group_id}
-    style={{
-      position: "relative",
-      width: "160px",
-      marginRight: "10px",
-    }}
+    style={selectStyle}
   >
     <button
       type="button"
