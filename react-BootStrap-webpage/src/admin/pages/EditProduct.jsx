@@ -76,7 +76,7 @@ console.log("typeof:", typeof data.value_id);
       price: data.price,
       stock_data: data.stock_data,
       category_id: data.category_id,
-      value_id: JSON.parse(data.value_id),
+      value_id: data.value_id,
       image: null,
     });
 
