@@ -32,12 +32,12 @@ function Dashboard() {
     <AdminLayout>
       <Row>
          <Col md={3}>
-          <Card>
+          {/* <Card>
             <Card.Body>
               <h3>{stats.users}</h3>
               <p>Total Users</p>
             </Card.Body>
-          </Card>
+          </Card> */}
         </Col>
         <Col md={3}>
           <Card>
@@ -49,12 +49,12 @@ function Dashboard() {
         </Col>
 
          <Col md={3}>
-          <Card>
+          {/* <Card>
             <Card.Body>
               <h3>{stats.Revnue}</h3>
               <p>Revnue</p>
             </Card.Body>
-          </Card>
+          </Card> */}
         </Col>
 
         <Col md={3}>
