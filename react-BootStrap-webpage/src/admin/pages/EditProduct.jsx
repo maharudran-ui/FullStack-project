@@ -64,6 +64,9 @@ const loadProduct = async () => {
     const res = await adminApi.get(`/products/${id}`);
 
     const data = res.data;
+    console.log("Product:", data);
+console.log("value_id:", data.value_id);
+console.log("typeof:", typeof data.value_id);
 
     setProduct({
       author: data.author,
