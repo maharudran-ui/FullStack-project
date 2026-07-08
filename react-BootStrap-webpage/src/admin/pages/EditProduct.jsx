@@ -9,9 +9,11 @@ function EditProduct() {
     author: "",
     tittle: "",
     description: "",
+    year,
     price: "",
     stock_data: "",
     category_id: "",
+    value_id:[],
     image: null,
   });
 
@@ -33,9 +35,11 @@ function EditProduct() {
       formData.append("author", product.author);
       formData.append("tittle", product.tittle);
       formData.append("description", product.description);
+      formData.append("year", product.year);
       formData.append("price", product.price);
       formData.append("stock_data", product.stock_data);
       formData.append("category_id", product.category_id);
+      formData.append("value_id",product.value_id);
 
       if (product.image) {
         formData.append("product_image", product.image);
@@ -62,9 +66,25 @@ function EditProduct() {
 
           <Form onSubmit={handleSubmit}>
             <Row>
+               <Col>
+                <Form.Group className="mb-3">
+                  <Form.Label>Author</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="author"
+                    value={product.author}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+
+
+            <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label>Title</Form.Label>
+                  <Form.Label>Product Title</Form.Label>
                   <Form.Control
                     type="text"
                     name="tittle"

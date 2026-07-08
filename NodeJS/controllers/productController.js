@@ -402,7 +402,7 @@ OFFSET ?
   });
 };
 
-                  // Update Product
+  // Update Product
 
    exports.updateProduct = (req, res) => {
   const id = Number(req.params.id);
