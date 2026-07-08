@@ -248,10 +248,6 @@ await adminApi.put(`/products/${id}`, formData, {
       </option>
     ))}
   </Form.Select>
-
-  <Form.Text className="text-muted">
-    Hold Ctrl (Windows) or Cmd (Mac) to select multiple values.
-  </Form.Text>
 </Form.Group>
               </Col>
             </Row>
