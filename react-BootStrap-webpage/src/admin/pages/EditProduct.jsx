@@ -13,7 +13,6 @@ function EditProduct() {
     price: "",
     stock_data: "",
     category_id: "",
-    value_id:[],
     image: null,
   });
 
@@ -39,7 +38,6 @@ function EditProduct() {
       formData.append("price", product.price);
       formData.append("stock_data", product.stock_data);
       formData.append("category_id", product.category_id);
-      formData.append("value_id",product.value_id);
 
       if (product.image) {
         formData.append("product_image", product.image);
@@ -119,7 +117,7 @@ function EditProduct() {
             </Form.Group>
 
             <Row>
-              <Col md={6}>
+              <Col md={4}>
                 <Form.Group className="mb-3">
                   <Form.Label>Price</Form.Label>
                   <Form.Control
@@ -131,7 +129,21 @@ function EditProduct() {
                 </Form.Group>
               </Col>
 
-              <Col md={6}>
+               <Col md={4}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Year</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="year"
+                    value={product.year}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </Col>
+
+
+
+              <Col md={4}>
                 <Form.Group className="mb-3">
                   <Form.Label>Stock</Form.Label>
                   <Form.Control
