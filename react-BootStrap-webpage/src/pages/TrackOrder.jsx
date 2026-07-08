@@ -22,7 +22,7 @@ function TrackOrder() {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  
 
   const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -306,73 +306,6 @@ function TrackOrder() {
                     </Form.Select>
                   ))}
                 </Col> */}
-
-                {groups.map((group) => (
-  <div
-    key={group.group_id}
-    style={selectStyle}
-  >
-    <button
-      type="button"
-      onClick={() =>
-        setOpenDropdown(
-          openDropdown === group.group_id
-            ? null
-            : group.group_id
-        )
-      }
-      style={{
-        width: "100%",
-        background: "#803300",
-        color: "white",
-        border: "1px solid #803300",
-        borderRadius: "20px",
-        padding: "6px 12px",
-        textAlign: "left",
-        cursor: "pointer",
-      }}
-    >
-      {group.group_name} 
-    </button>
-
-    {openDropdown === group.group_id && (
-      <div
-        style={{
-          position: "absolute",
-          top: "100%",
-          left: 0,
-          width: "100%",
-          background: "white",
-          border: "1px solid #ccc",
-          zIndex: 1000,
-        }}
-      >
-        {groupValues[group.group_id]?.map((val) => (
-          <div
-            key={val.value_id}
-            onClick={() => {
-              filterByValue(val.value_id);
-              setOpenDropdown(null);
-            }}
-            style={{
-              padding: "8px 12px",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) =>
-              (e.target.style.background = "#eee")
-            }
-            onMouseLeave={(e) =>
-              (e.target.style.background = "white")
-            }
-          >
-            {val.value_name}
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-))}
-</Col>
 
                 <Col
                   xs={12}
