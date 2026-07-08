@@ -279,7 +279,7 @@ function TrackOrder() {
                   }}
                 >
                   {/* API DYNAMIC DROPDOWNS */}
-                  {/* {groups.map((group) => (
+                  {groups.map((group) => (
                     <Form.Select
                       key={group.group_id}
                       style={selectStyle}
@@ -305,7 +305,7 @@ function TrackOrder() {
                       ))}
                     </Form.Select>
                   ))}
-                </Col> */}
+                </Col>
 
                 <Col
                   xs={12}
