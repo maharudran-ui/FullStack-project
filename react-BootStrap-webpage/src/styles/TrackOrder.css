@@ -81,7 +81,25 @@
   animation: fadeInEffect 0.4s ease-in-out forwards;
 }
 
+.custom-toggle {
+  border: 1px solid #803300 !important;
+  box-shadow: none !important;
+  min-width: 160px;
+}
 
+.custom-toggle:hover,
+.custom-toggle:focus,
+.custom-toggle:active,
+.show > .custom-toggle {
+  background-color: #803300 !important;
+  border-color: #803300 !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+.custom-toggle::after {
+  margin-left: 10px;
+}
 
 @keyframes fadeInEffect {
   from {
