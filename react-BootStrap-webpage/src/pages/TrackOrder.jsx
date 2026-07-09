@@ -283,16 +283,10 @@ function TrackOrder() {
                   {/* API DYNAMIC DROPDOWNS */}
                   {groups.map((group) => (
                    <Dropdown key={group.group_id}>
-  <Dropdown.Toggle
-    style={{
-      maxWidth: "160px",
-      minWidth: "160px",
-      backgroundColor: "#803300",
-      borderColor: "#803300",
-      borderRadius: "20px",
-      color: "#fff",
-    }}
-  >
+ <Dropdown.Toggle
+  variant="none"
+  className="custom-dropdown-toggle"
+>
     {group.group_name}
   </Dropdown.Toggle>
 

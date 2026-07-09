@@ -81,6 +81,52 @@
   animation: fadeInEffect 0.4s ease-in-out forwards;
 }
 
+.custom-dropdown-toggle {
+  background-color: #803300 !important;
+  color: white !important;
+  border: none !important;
+
+  width: 160px;
+  height: 48px;
+
+  border-radius: 999px !important;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  font-weight: 600;
+  font-size: 18px;
+
+  box-shadow: none !important;
+}
+
+.custom-dropdown-toggle:hover,
+.custom-dropdown-toggle:focus,
+.custom-dropdown-toggle:active,
+.show > .custom-dropdown-toggle {
+  background-color: #803300 !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.custom-dropdown-toggle::after {
+  margin-left: 12px;
+}
+
+.dropdown-menu {
+  border-radius: 15px;
+  min-width: 160px;
+}
+
+.dropdown-item:hover {
+  background-color: #803300;
+  color: white;
+}
+
 @keyframes fadeInEffect {
   from {
     opacity: 0;
