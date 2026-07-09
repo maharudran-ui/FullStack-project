@@ -6,6 +6,7 @@ import CategoriesBar from "../components/common/CategoriesBar";
 import SearchBar from "../components/common/SearchBar";
 import StockPagination from "../components/product/StockPagination";
 import PhilatelicBookGrid from "../components/product/PhilatelicBookGrid";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import axios from "axios";
 import api from "../services/api";
@@ -22,7 +23,6 @@ function TrackOrder() {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
-  
 
   const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -60,6 +60,8 @@ function TrackOrder() {
       console.log(err);
     }
   };
+
+  //load products
 
   const loadProductsByCategory = async (categoryName) => {
     try {
@@ -280,30 +282,31 @@ function TrackOrder() {
                 >
                   {/* API DYNAMIC DROPDOWNS */}
                   {groups.map((group) => (
-                    <Form.Select
-                      key={group.group_id}
-                      style={selectStyle}
-                      defaultValue=""
-                      onChange={(e) => {
-                        const valueId = e.target.value;
+                   <Dropdown key={group.group_id}>
+  <Dropdown.Toggle
+    style={{
+      maxWidth: "160px",
+      minWidth: "160px",
+      backgroundColor: "#803300",
+      borderColor: "#803300",
+      borderRadius: "20px",
+      color: "#fff",
+    }}
+  >
+    {group.group_name}
+  </Dropdown.Toggle>
 
-                        if (valueId) {
-                          filterByValue(valueId);
-                        } else {
-                          loadProducts();
-                        }
-
-                        e.target.value = "";
-                      }}
-                    >
-                      <option value="">{group.group_name} ▾</option>
-
-                      {groupValues[group.group_id]?.map((val) => (
-                        <option key={val.value_id} value={val.value_id}>
-                          {val.value_name}
-                        </option>
-                      ))}
-                    </Form.Select>
+  <Dropdown.Menu>
+    {groupValues[group.group_id]?.map((val) => (
+      <Dropdown.Item
+        key={val.value_id}
+        onClick={() => filterByValue(val.value_id)}
+      >
+        {val.value_name}
+      </Dropdown.Item>
+    ))}
+  </Dropdown.Menu>
+</Dropdown>
                   ))}
                 </Col>
 
