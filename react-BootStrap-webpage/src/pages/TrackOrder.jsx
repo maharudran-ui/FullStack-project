@@ -284,8 +284,9 @@ function TrackOrder() {
                   {groups.map((group) => (
                    <Dropdown key={group.group_id}>
  <Dropdown.Toggle
-  variant="none"
-  className="custom-dropdown-toggle"
+  variant=""
+  style={selectStyle}
+  className="custom-toggle"
 >
     {group.group_name}
   </Dropdown.Toggle>
