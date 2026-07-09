@@ -44,6 +44,7 @@ function TrackOrder() {
     "Maps, Prints, Photographs Ephemera": 4,
     "Old Picture Postcards": 5,
     "Stamps and Covers": 6,
+    "History":27,
   };
 
   const getCategoryId = (name) => categoryMap[name];
