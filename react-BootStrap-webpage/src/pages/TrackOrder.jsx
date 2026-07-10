@@ -354,7 +354,7 @@ useEffect(() => {
                     }}
                     className="mb-3"
                   >
-                    {activeCategory}
+                     {activeCategory?.category_name}
                   </h1>
 
                   {activeCategory?.category_name === "West Indies Books" && (
