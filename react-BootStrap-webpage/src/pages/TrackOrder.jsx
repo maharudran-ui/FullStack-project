@@ -62,7 +62,7 @@ function TrackOrder() {
     }
   };
 
-  //load products
+  //load productsbycategory
 
 const loadProductsByCategory = async (categoryId) => {
     try {

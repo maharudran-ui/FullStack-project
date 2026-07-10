@@ -26,7 +26,7 @@ function CategoriesBar({ activeCategory, setActiveCategory }) {
     } catch (err) {
       console.log("Error loading categories:", err);
     }
-  };
+  }; console.log("CategoriesBar activeCategory:", activeCategory);
 
   return (
     <Row className="categories-wrapper">
