@@ -31,23 +31,29 @@ function TrackOrder() {
   const [searchDescription, setSearchDescription] = useState(false);
   const [hideCategoryHighlight, setHideCategoryHighlight] = useState(false);
 
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    loadCategories();
+}, []);
+
+const loadCategories = async () => {
+    const res = await api.get("/categories/get");
+    setCategories(res.data);
+};
+
   useEffect(() => {
     setCurrentPage(1);
   }, [searchKeyword, searchScope, searchDescription]);
 
   const location = useLocation();
+const getCategoryId = (name) => {
+    const category = categories.find(
+        c => c.category_name === name
+    );
 
-  const categoryMap = {
-    "Philatelic Books": 1,
-    "West Indies Books": 2,
-    "Miscellaneous books": 3,
-    "Maps, Prints, Photographs Ephemera": 4,
-    "Old Picture Postcards": 5,
-    "Stamps and Covers": 6,
-    "History":25,
-  };
-
-  const getCategoryId = (name) => categoryMap[name];
+    return category?.category_id;
+};
 
   // fetchproducts
 
