@@ -204,7 +204,7 @@ const getCategoryId = (name) => {
   );
   const totalPages = Math.ceil(currentProducts.length / itemsPerPage);
 
-  const isProductCategory = Object.keys(categoryMap).includes(activeCategory);
+  // const isProductCategory = Object.keys(categoryMap).includes(activeCategory);
 
   const handleVerify = async () => {
     try {
