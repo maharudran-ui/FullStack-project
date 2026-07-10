@@ -85,7 +85,7 @@ const loadProductsByCategory = async (categoryId) => {
 
 const fetchGroups = async (categoryId) => {
     try {
-      if (!categoryName) return;
+      if (!categoryId) return;
 
       const res = await api.get(`/groups/category/${categoryId}`);
       setGroups(res.data);
