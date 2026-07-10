@@ -14,7 +14,7 @@ import api from "../services/api";
 function TrackOrder() {
   const [groups, setGroups] = useState([]);
   const [groupValues, setGroupValues] = useState({});
-  const [activeCategory, setActiveCategory] = useState("");
+ const [activeCategory, setActiveCategory] = useState(null);
   const [email, setEmail] = useState("");
   const [verified, setVerified] = useState(false);
   const [activeFilter, setActiveFilter] = useState("newest");
@@ -236,8 +236,8 @@ useEffect(() => {
     >
       <Container fluid="lg">
         {/* CATEGORIES NAVIGATION MENU */}
-        <CategoriesBar
-          activeCategory={activeCategory?.category_name}
+       <CategoriesBar
+  activeCategory={activeCategory}
           setActiveCategory={(category) => {
             // Reset search
             setSearchText("");
@@ -249,7 +249,7 @@ useEffect(() => {
             setHideCategoryHighlight(false);
 
             setActiveCategory(category);
-            loadProductsByCategory(category);
+loadProductsByCategory(category.category_id);
             setCurrentPage(1);
           }}
         />
