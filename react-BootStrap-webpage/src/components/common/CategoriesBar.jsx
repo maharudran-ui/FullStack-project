@@ -22,11 +22,7 @@ function CategoriesBar({ activeCategory, setActiveCategory }) {
       console.log("API DATA:", res.data);
 
       
-      const formatted = res.data.map(
-        (cat) => cat.category_name
-      );
-
-      setCategories(formatted);
+      setCategories(res.data);
     } catch (err) {
       console.log("Error loading categories:", err);
     }
@@ -43,16 +39,16 @@ function CategoriesBar({ activeCategory, setActiveCategory }) {
         <div className="d-block d-md-none">
           <select
             className="mobile-category-dropdown"
-            value={activeCategory}
+            value={activeCategory ? JSON.stringify(activeCategory) : ""}
             onChange={(e) => {
-              const selected = e.target.value;
+             const selected = JSON.parse(e.target.value);
 
-              setActiveCategory(selected);
+setActiveCategory(selected);
 
-              localStorage.setItem(
-                "selectedCategory",
-                selected
-              );
+localStorage.setItem(
+  "selectedCategory",
+  JSON.stringify(selected)
+);
 
               navigate("/track-order");
             }}
@@ -61,12 +57,12 @@ function CategoriesBar({ activeCategory, setActiveCategory }) {
               Select Category
             </option>
 
-            {categories.map((categoryName) => (
+            {categories.map((category) => (
               <option
-                key={categoryName}
-                value={categoryName}
+                key={category.category_id}
+               value={JSON.stringify(category)}
               >
-                {categoryName}
+                {category.category_name}
               </option>
             ))}
           </select>
@@ -74,26 +70,26 @@ function CategoriesBar({ activeCategory, setActiveCategory }) {
 
         {/* DESKTOP BUTTONS */}
         <div className="categories-buttons d-none d-md-flex">
-          {categories.map((categoryName) => (
+         {categories.map((category) => (
             <button
-              key={categoryName}
+            key={category.category_id}
               onClick={() => {
-                setActiveCategory(categoryName);
+              setActiveCategory(category);
 
                 localStorage.setItem(
-                  "selectedCategory",
-                  categoryName
-                );
+  "selectedCategory",
+  JSON.stringify(category)
+);
 
                 navigate("/track-order");
               }}
-              className={`category-btn ${
-                activeCategory === categoryName
-                  ? "active"
-                  : ""
-              }`}
+             className={`category-btn ${
+  activeCategory?.category_id === category.category_id
+    ? "active"
+    : ""
+}`}
             >
-              {categoryName}
+             {category.category_name}
             </button>
           ))}
         </div>

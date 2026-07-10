@@ -37,17 +37,17 @@ function TrackOrder() {
 
   const location = useLocation();
 
-  const categoryMap = {
-    "Philatelic Books": 1,
-    "West Indies Books": 2,
-    "Miscellaneous books": 3,
-    "Maps, Prints, Photographs Ephemera": 4,
-    "Old Picture Postcards": 5,
-    "Stamps and Covers": 6,
-    "History":25,
-  };
+  // const categoryMap = {
+  //   "Philatelic Books": 1,
+  //   "West Indies Books": 2,
+  //   "Miscellaneous books": 3,
+  //   "Maps, Prints, Photographs Ephemera": 4,
+  //   "Old Picture Postcards": 5,
+  //   "Stamps and Covers": 6,
+  //   "History":25,
+  // };
 
-  const getCategoryId = (name) => categoryMap[name];
+  // const getCategoryId = (name) => categoryMap[name];
 
   // fetchproducts
 
@@ -64,11 +64,9 @@ function TrackOrder() {
 
   //load products
 
-  const loadProductsByCategory = async (categoryName) => {
+const loadProductsByCategory = async (categoryId) => {
     try {
       const res = await api.get("/products?limit=100");
-
-      const categoryId = getCategoryId(categoryName);
 
       const filteredProducts = res.data.products.filter(
         (p) => p.category_id === categoryId,
@@ -85,10 +83,9 @@ function TrackOrder() {
     loadProducts();
   }, []);
 
-  const fetchGroups = async (categoryName) => {
+const fetchGroups = async (categoryId) => {
     try {
       if (!categoryName) return;
-      const categoryId = getCategoryId(categoryName);
 
       const res = await api.get(`/groups/category/${categoryId}`);
       setGroups(res.data);
@@ -116,21 +113,27 @@ function TrackOrder() {
     }
   };
 
-  useEffect(() => {
-    if (location.state?.category) {
-      setActiveCategory(location.state.category);
-    }
-  }, [location.state]);
+useEffect(() => {
+  if (location.state?.category) {
+    setActiveCategory(location.state.category);
+  } else {
+    const savedCategory = localStorage.getItem("selectedCategory");
 
-  useEffect(() => {
-    if (activeCategory) {
-      fetchGroups(activeCategory);
-      loadProductsByCategory(activeCategory);
-    } else {
-      setGroups([]);
-      setGroupValues({});
+    if (savedCategory) {
+      setActiveCategory(JSON.parse(savedCategory));
     }
-  }, [activeCategory]);
+  }
+}, [location.state]);
+
+useEffect(() => {
+  if (activeCategory) {
+    fetchGroups(activeCategory.category_id);
+    loadProductsByCategory(activeCategory.category_id);
+  } else {
+    setGroups([]);
+    setGroupValues({});
+  }
+}, [activeCategory]);
 
   let filteredProducts = products;
 
@@ -177,7 +180,7 @@ function TrackOrder() {
     try {
       const res = await api.get(`/products/value/${valueId}`);
 
-      const categoryId = getCategoryId(activeCategory);
+      const categoryId = activeCategory.category_id;
 
       const filteredProducts = res.data.filter(
         (p) => p.category_id === categoryId,
@@ -198,7 +201,7 @@ function TrackOrder() {
   );
   const totalPages = Math.ceil(currentProducts.length / itemsPerPage);
 
-  const isProductCategory = Object.keys(categoryMap).includes(activeCategory);
+ const isProductCategory = !!activeCategory;
 
   const handleVerify = async () => {
     try {
@@ -234,7 +237,7 @@ function TrackOrder() {
       <Container fluid="lg">
         {/* CATEGORIES NAVIGATION MENU */}
         <CategoriesBar
-          activeCategory={activeCategory}
+          activeCategory={activeCategory?.category_name}
           setActiveCategory={(category) => {
             // Reset search
             setSearchText("");
@@ -354,7 +357,7 @@ function TrackOrder() {
                     {activeCategory}
                   </h1>
 
-                  {activeCategory === "West Indies Books" && (
+                  {activeCategory?.category_name === "West Indies Books" && (
                     <div
                       className="mt-4 mb-5 px-2"
                       style={{
@@ -373,7 +376,7 @@ function TrackOrder() {
                     </div>
                   )}
 
-                  {activeCategory === "Miscellaneous books" && (
+                  {activeCategory?.category_name === "Miscellaneous books" && (
                     <div
                       className="mt-4 mb-5 px-2"
                       style={{
@@ -387,7 +390,7 @@ function TrackOrder() {
                     </div>
                   )}
 
-                  {activeCategory === "Philatelic Books" && (
+                  {activeCategory?.category_name === "Philatelic Books" && (
                     <div
                       className="mt-4 mb-5 px-2"
                       style={{
@@ -418,7 +421,7 @@ function TrackOrder() {
                     </div>
                   )}
 
-                  {activeCategory === "Maps, Prints, Photographs Ephemera" && (
+                  {activeCategory?.category_name === "Maps, Prints, Photographs Ephemera" && (
                     <div
                       className="mt-4 mb-5 px-2"
                       style={{
@@ -463,7 +466,7 @@ function TrackOrder() {
                     </div>
                   )}
 
-                  {activeCategory === "Old Picture Postcards" && (
+                  {activeCategory?.category_name === "Old Picture Postcards" && (
                     <div
                       className="mt-4 mb-5 px-2"
                       style={{
@@ -497,9 +500,9 @@ function TrackOrder() {
                 <strong> Showing items that contain the search term</strong>{" "}
                 <strong>"{searchKeyword}"</strong> in{" "}
                 <strong>
-                  {searchScope === "catalogue"
-                    ? "Whole Catalogue"
-                    : activeCategory}
+                {searchScope === "catalogue"
+    ? "Whole Catalogue"
+    : activeCategory?.category_name}
                 </strong>
               </div>
             )}
@@ -549,7 +552,7 @@ function TrackOrder() {
 
             {/* PRODUCT GRIDS */}
             {paginatedProducts.length > 0 ? (
-              activeCategory === "Philatelic Books" ? (
+             activeCategory?.category_name === "Philatelic Books" ? (
                 <PhilatelicBookGrid products={paginatedProducts} />
               ) : (
                 <WestindiesBookGrid books={paginatedProducts} />
@@ -567,7 +570,7 @@ function TrackOrder() {
               onPageChange={setCurrentPage}
             />
 
-            {activeCategory === "West Indies Books" && (
+            {activeCategory?.category_name === "West Indies Books" && (
               <div
                 className="mt-5 pt-4 border-top text-start"
                 style={{ fontFamily: "Georgia, serif", color: "#2d3748" }}
@@ -607,7 +610,7 @@ function TrackOrder() {
               </div>
             )}
 
-            {activeCategory === "Philatelic Books" && (
+            {activeCategory?.category_name === "Philatelic Books" && (
               <div
                 className="mt-5 pt-4 border-top text-start"
                 style={{ fontFamily: "Georgia, serif", color: "#2d3748" }}
@@ -633,7 +636,7 @@ function TrackOrder() {
               </div>
             )}
 
-            {activeCategory === "Maps, Prints, Photographs Ephemera" && (
+            {activeCategory?.category_name === "Maps, Prints, Photographs Ephemera" && (
               <div
                 className="mt-5 pt-4 border-top text-start"
                 style={{
