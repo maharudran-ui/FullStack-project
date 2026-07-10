@@ -489,7 +489,7 @@ useEffect(() => {
               )}
             </div>
 
-            {/* {searchClicked && searchKeyword.trim() !== "" && (
+            {searchClicked && searchKeyword.trim() !== "" && (
               <div
                 style={{
                   marginBottom: "20px",
@@ -505,7 +505,7 @@ useEffect(() => {
     : activeCategory?.category_name}
                 </strong>
               </div>
-            )} */}
+            )}
 
             {/* FILTER BUTTONS */}
             <div className="d-flex flex-wrap gap-2 mt-4 mb-5">
@@ -532,7 +532,7 @@ useEffect(() => {
               ))}
             </div>
 
-            {searchClicked && searchKeyword.trim() !== "" && (
+            {/* {searchClicked && searchKeyword.trim() !== "" && (
   <div
     style={{
       marginBottom: "20px",
@@ -548,7 +548,7 @@ useEffect(() => {
         : activeCategory}
     </strong>
   </div>
-)}
+)} */}
 
             {/* PRODUCT GRIDS */}
             {paginatedProducts.length > 0 ? (
